@@ -1,35 +1,48 @@
 package main.firefighters;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import main.api.City;
-import main.api.CityNode;
-import main.api.FireDispatch;
-import main.api.Firefighter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import main.api.*;
 
 public class FireDispatchImpl implements FireDispatch {
 
+
+  private List<Firefighter> firefighters =  new ArrayList<Firefighter>();
+  private City city;
+
   public FireDispatchImpl(City city) {
-    // TODO
-    throw new NotImplementedException();
+    this.city = city;
   }
 
   @Override
   public void setFirefighters(int numFirefighters) {
-    // TODO
-    throw new NotImplementedException();
+    // TODO firefighters need to be spread across the city;
+    for (int x = 0; x < numFirefighters; x++) {
+      firefighters.add(new FirefighterImpl(city.getFireStation().getLocation()));
+    }
   }
 
   @Override
   public List<Firefighter> getFirefighters() {
-    // TODO
-    throw new NotImplementedException();
+    return firefighters;
   }
 
   @Override
   public void dispatchFirefighers(CityNode... burningBuildings) {
-    // TODO
-    throw new NotImplementedException();
+    if (firefighters.size() < burningBuildings.length) {
+      throw new RuntimeException("Too much carnage");
+    }
+    for(CityNode burnLocation: burningBuildings) {
+      Firefighter fighter = getClosestFirefighter(burnLocation);
+      Building building = city.getBuilding(burnLocation);
+      fighter.extinguishFire(building);
+    }
   }
+
+  private Firefighter getClosestFirefighter(CityNode burnLocation) {
+    // TODO correctly implement
+    return firefighters.get(0);
+  }
+
 }
