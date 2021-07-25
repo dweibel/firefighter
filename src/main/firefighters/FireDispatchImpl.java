@@ -1,7 +1,6 @@
 package main.firefighters;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import main.api.*;
 
@@ -30,9 +29,6 @@ public class FireDispatchImpl implements FireDispatch {
 
   @Override
   public void dispatchFirefighers(CityNode... burningBuildings) {
-    if (firefighters.size() < burningBuildings.length) {
-      throw new RuntimeException("Too much carnage");
-    }
     for(CityNode burnLocation: burningBuildings) {
       Firefighter fighter = getClosestFirefighter(burnLocation);
       Building building = city.getBuilding(burnLocation);
@@ -41,8 +37,27 @@ public class FireDispatchImpl implements FireDispatch {
   }
 
   private Firefighter getClosestFirefighter(CityNode burnLocation) {
-    // TODO correctly implement
-    return firefighters.get(0);
+    FighterDistance[] distances = new FighterDistance[firefighters.size()];
+    for (int x = 0; x < distances.length; x++) {
+      distances[x] = new FighterDistance(firefighters.get(x), burnLocation);
+    }
+    return Arrays.stream(distances).min(new SortDistance()).get().firefighter;
   }
 
+  class FighterDistance {
+    FighterDistance(Firefighter firefighter, CityNode location) {
+      this.firefighter = firefighter;
+      distance = firefighter.calculateDistance(location);
+    }
+
+    Firefighter firefighter;
+    int distance;
+  }
+
+  static class SortDistance implements Comparator<FighterDistance>{
+    @Override
+    public int compare(FighterDistance fd1, FighterDistance fd2) {
+      return fd1.distance - fd2.distance;
+    }
+  }
 }

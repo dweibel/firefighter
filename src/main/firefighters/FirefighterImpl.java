@@ -41,6 +41,7 @@ public class FirefighterImpl implements Firefighter {
   public int calculateDistance(CityNode node) {
     int xDistance = node.getX() - location.getX();
     int yDistance = node.getY() - location.getY();
-    return (int) Math.round(Math.sqrt((yDistance) * (yDistance) + (xDistance) * (xDistance)));
+    return Math.abs(xDistance) + Math.abs(yDistance);
+//    return (int) Math.round(Math.sqrt((yDistance) * (yDistance) + (xDistance) * (xDistance)));
   }
 }
