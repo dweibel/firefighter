@@ -4,7 +4,6 @@ import main.api.Building;
 import main.api.CityNode;
 import main.api.Firefighter;
 import main.api.exceptions.NoFireFoundException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class FirefighterImpl implements Firefighter {
 
@@ -42,6 +41,5 @@ public class FirefighterImpl implements Firefighter {
     int xDistance = node.getX() - location.getX();
     int yDistance = node.getY() - location.getY();
     return Math.abs(xDistance) + Math.abs(yDistance);
-//    return (int) Math.round(Math.sqrt((yDistance) * (yDistance) + (xDistance) * (xDistance)));
   }
 }

@@ -21,7 +21,7 @@ public class BasicScenarios {
     Pyromaniac.setFire(basicCity, fireNode);
 
     fireDispatch.setFirefighters(1);
-    fireDispatch.dispatchFirefighers(fireNode);
+    fireDispatch.dispatchFirefighters(fireNode);
     Assert.assertFalse(basicCity.getBuilding(fireNode).isBurning());
   }
 
@@ -35,7 +35,7 @@ public class BasicScenarios {
     Pyromaniac.setFire(basicCity, fireNode);
 
     fireDispatch.setFirefighters(1);
-    fireDispatch.dispatchFirefighers(fireNode);
+    fireDispatch.dispatchFirefighters(fireNode);
 
     Firefighter firefighter = fireDispatch.getFirefighters().get(0);
     Assert.assertEquals(2, firefighter.distanceTraveled());
@@ -52,7 +52,7 @@ public class BasicScenarios {
     Pyromaniac.setFire(basicCity, fireNode);
 
     fireDispatch.setFirefighters(1);
-    fireDispatch.dispatchFirefighers(fireNode);
+    fireDispatch.dispatchFirefighters(fireNode);
 
     Firefighter firefighter = fireDispatch.getFirefighters().get(0);
     Assert.assertEquals(1, firefighter.distanceTraveled());
@@ -71,7 +71,7 @@ public class BasicScenarios {
     Pyromaniac.setFires(basicCity, fireNodes);
 
     fireDispatch.setFirefighters(1);
-    fireDispatch.dispatchFirefighers(fireNodes);
+    fireDispatch.dispatchFirefighters(fireNodes);
 
     Firefighter firefighter = fireDispatch.getFirefighters().get(0);
     Assert.assertEquals(2, firefighter.distanceTraveled());
@@ -92,7 +92,7 @@ public class BasicScenarios {
     Pyromaniac.setFires(basicCity, fireNodes);
 
     fireDispatch.setFirefighters(2);
-    fireDispatch.dispatchFirefighers(fireNodes);
+    fireDispatch.dispatchFirefighters(fireNodes);
 
     List<Firefighter> firefighters = fireDispatch.getFirefighters();
     int totalDistanceTraveled = 0;

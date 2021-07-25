@@ -7,7 +7,7 @@ import main.api.*;
 public class FireDispatchImpl implements FireDispatch {
 
 
-  private List<Firefighter> firefighters =  new ArrayList<Firefighter>();
+  private List<Firefighter> firefighters =  new ArrayList<>();
   private City city;
 
   public FireDispatchImpl(City city) {
@@ -16,7 +16,6 @@ public class FireDispatchImpl implements FireDispatch {
 
   @Override
   public void setFirefighters(int numFirefighters) {
-    // TODO firefighters need to be spread across the city;
     for (int x = 0; x < numFirefighters; x++) {
       firefighters.add(new FirefighterImpl(city.getFireStation().getLocation()));
     }
@@ -28,7 +27,7 @@ public class FireDispatchImpl implements FireDispatch {
   }
 
   @Override
-  public void dispatchFirefighers(CityNode... burningBuildings) {
+  public void dispatchFirefighters(CityNode... burningBuildings) {
     for(CityNode burnLocation: burningBuildings) {
       Firefighter fighter = getClosestFirefighter(burnLocation);
       Building building = city.getBuilding(burnLocation);
